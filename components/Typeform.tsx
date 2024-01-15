@@ -400,6 +400,7 @@ export default function Typeform() {
                 };
                 let res = 0;
                 for (let key in rightAnswers) {
+                    // @ts-ignore
                     if (JSON.stringify(data.answers[key].value) === JSON.stringify(rightAnswers[key])) res++;
                 }
                 if (res / Object.keys(rightAnswers).length >= 0.7) setEndMessage("You passed the swissDAO Contributor quest!"); else setEndMessage("You failed the swissDAO Contributor quest!");
