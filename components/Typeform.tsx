@@ -103,19 +103,30 @@ export default function Typeform() {
                     'block.defaultThankYouScreen.label': endMessage,
                 }
             }}
-            onSubmit={(data, {completeForm, setIsSubmitting}) => {
-                let rightAnswers = {
-                    "principle": ["Meritocracy"], "ensure_people": ["most_active"],
-                };
-                let res = 0;
-                for (let key in rightAnswers) {
-                    // @ts-ignore
-                    if (JSON.stringify(data.answers[key].value) === JSON.stringify(rightAnswers[key])) res++;
+            onSubmit={(data: any, {completeForm, setIsSubmitting}) => {
+                let a = {
+                    "answers": {
+                        "ethereum_address": {
+                            "value": "0xaE53fCBCa14c24238eA5bA021DF497753394B876",
+                        },
+                        "principle": {
+                            "value": [
+                                "Meritocracy"
+                            ],
+                        },
+                        "ensure_people": {
+                            "value": [
+                                "most_active"
+                            ],
+                        }
+                    }
                 }
-                // @ts-ignore
-                if (isValidEthereumAddress(data.answers["ethereum_address"].value)) res++;
 
-                if (res / (Object.keys(rightAnswers).length + 1) >= 0.7) setEndMessage("You passed the swissDAO Contributor quest!"); else setEndMessage("You failed the swissDAO Contributor quest!");
+                const principle = data.answers["principle"]["value"][0] === "Meritocracy";
+                const ensure_people = data.answers["ensure_people"]["value"][0] === "most_active";
+                const ethereum_address = isValidEthereumAddress(data.answers["ethereum_address"].value);
+
+                (principle && ensure_people && ethereum_address) ? setEndMessage("You passed the swissDAO Contributor quest!") : setEndMessage("You failed the swissDAO Contributor quest!");
 
                 setTimeout(() => {
                     setIsSubmitting(false);
