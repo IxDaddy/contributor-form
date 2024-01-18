@@ -104,24 +104,6 @@ export default function Typeform() {
                 }
             }}
             onSubmit={(data: any, {completeForm, setIsSubmitting}) => {
-                let a = {
-                    "answers": {
-                        "ethereum_address": {
-                            "value": "0xaE53fCBCa14c24238eA5bA021DF497753394B876",
-                        },
-                        "principle": {
-                            "value": [
-                                "Meritocracy"
-                            ],
-                        },
-                        "ensure_people": {
-                            "value": [
-                                "most_active"
-                            ],
-                        }
-                    }
-                }
-
                 const principle = data.answers["principle"]["value"][0] === "Meritocracy";
                 const ensure_people = data.answers["ensure_people"]["value"][0] === "most_active";
                 const ethereum_address = isValidEthereumAddress(data.answers["ethereum_address"].value);
