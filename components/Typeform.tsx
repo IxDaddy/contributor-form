@@ -36,11 +36,11 @@ export default function Typeform() {
                 }, {
                     name: "multiple-choice", id: "principle", attributes: {
                         required: true, verticalAlign: true, label: "What is one of our principles?", choices: [{
-                            label: "Meritocracy", value: "Meritocracy",
+                            label: "Meritocracy", value: "meritocracy",
                         }, {
-                            label: "Plutocracy", value: "Plutocracy",
+                            label: "Plutocracy", value: "plutocracy",
                         }, {
-                            label: "Democracy", value: "Democracy",
+                            label: "Democracy", value: "democracy",
                         },],
                     },
                 }, {
@@ -104,8 +104,8 @@ export default function Typeform() {
                 }
             }}
             onSubmit={(data: any, {completeForm, setIsSubmitting}) => {
-                const principle = data.answers["principle"]["value"][0] === "Meritocracy";
-                const ensure_people = data.answers["ensure_people"]["value"][0] === "most_active";
+                const principle = data.answers["principle"]["value"][0] === "meritocracy";
+                const ensure_people = data.answers["ensure_people"]["value"][0] === "experience_points";
                 const ethereum_address = isValidEthereumAddress(data.answers["ethereum_address"].value);
 
                 (principle && ensure_people && ethereum_address) ? setEndMessage("You passed the swissDAO Contributor quest!") : setEndMessage("You failed the swissDAO Contributor quest!");
