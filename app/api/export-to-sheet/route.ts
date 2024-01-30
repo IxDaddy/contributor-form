@@ -1,7 +1,8 @@
 import {appendSpreadsheet, Row} from "@/lib/googleSheets";
 
+interface form {}
 
-function submitForm(data: any) {
+function submitForm(data: form) {
     let row: Row = {
         eth_address: "",
         principle: "",
