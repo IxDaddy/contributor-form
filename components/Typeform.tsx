@@ -32,7 +32,6 @@ registerCoreBlocks();
 export default function Typeform() {
     let [endMessage, setEndMessage] = useState("");
 
-    const ethereum_address: any = useFieldAnswer("ethereum_address");
     const principle: any = useFieldAnswer("principle");
     const ensure_people: any = useFieldAnswer("ensure_people");
 
@@ -307,9 +306,10 @@ export default function Typeform() {
                 const ensure_people = data.answers["ensure_people"]["value"][0] === "experience_points";
                 const ethereum_address = isValidEthereumAddress(data.answers["ethereum_address"].value);
 
-                (ethereum_address && principle && ensure_people) ? setEndMessage("You passed the swissDAO Contributor quest!<br>We will get in touch soon.") : setEndMessage("You failed the swissDAO Contributor quest!");
+                const isSuccessful = ethereum_address && principle && ensure_people;
 
-                sendFormData(data.answers)
+                (isSuccessful) ? setEndMessage("You passed the swissDAO Contributor quest!<br>We will get in touch soon.") : setEndMessage("You failed the swissDAO Contributor quest!");
+                if (isSuccessful) sendFormData(data.answers)
                 setTimeout(() => {
                     setIsSubmitting(false);
                     completeForm();
