@@ -11,6 +11,8 @@
   "dependencies": {
     "@quillforms/react-renderer-utils": "^5.9.1",
     "@quillforms/renderer-core": "^5.7.0",
+    "google-auth-library": "^9.6.0",
+    "google-spreadsheet": "^4.1.1",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
